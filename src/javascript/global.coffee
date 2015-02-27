@@ -1,18 +1,15 @@
 d3 = require 'd3'
 $ = require 'jQuery'
 
-$(window).on 'resize', ->
-  debugger
-
 window.BarChart =
-  barHeight: 20
+  barHeight: 32
   width: 420
   init: ->
     @width = $('.chart').width()
     $('.chart').height(DATA.length * (@barHeight))
 
-  clean_num: (percent) ->
-    parseFloat percent.replace("%", "")
+  clean_num: (num) ->
+    parseFloat num.replace(",", "")
   getXData: (key) ->
     DATA.map (data) =>
       @clean_num data[key]
@@ -22,7 +19,7 @@ window.BarChart =
     @init()
     X_DATA = @getXData(key)
     x = d3.scale.linear()
-          .domain([0, 60])
+          .domain([0, 15000])
           .range([0, @width])
 
     @chart = d3.select(".chart")
@@ -52,13 +49,13 @@ window.BarChart =
         .attr("x", 3)
         .attr("y", 10)
         .attr("dy", ".35em")
-        .text (d) -> d["Train Line"]
+        .text (d) -> d["Type of Delay"]
 
   updateGraph: (key) ->
     $('h2.operation').text(key.replace(/with /i, 'w/'))
     X_DATA = @getXData(key)
     x = d3.scale.linear()
-          .domain([0, 60])
+          .domain([0, 15000])
           .range([0, @width])
 
     @chart.attr("height", @barHeight * X_DATA.length)
@@ -110,4 +107,4 @@ window.BarChart =
 
 
 BarChart.showOperations()
-BarChart.renderGraph("Over Crowding")
+BarChart.renderGraph("12/1/2013")
