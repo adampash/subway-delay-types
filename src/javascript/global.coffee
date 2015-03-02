@@ -38,7 +38,10 @@ window.BarChart =
 
     @bar.append("text")
         .attr("x", (d) =>
-          x(@clean_num d[key]) - 3
+          Math.max(
+            x(@clean_num d[key]) - 3,
+            40
+          ) or 40
         )
         .attr("y", @barHeight - 10)
         .attr("dy", ".35em")
@@ -69,7 +72,11 @@ window.BarChart =
     @bar.transition()
       .select("text")
         .attr("x", (d) =>
-          Math.max((x(@clean_num d[key]) - 3) or 100)
+          Math.max(
+            x(@clean_num d[key]) - 3,
+            40
+          ) or 40
+          # Math.max((x(@clean_num d[key]) - 3) or 100)
         )
         .attr("dy", ".35em")
         .text (d) ->
