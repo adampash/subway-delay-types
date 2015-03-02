@@ -92,7 +92,7 @@ window.BarChart =
 
     for operation in operations
       display_operation = operation
-                    .toLowerCase()
+                    # .toLowerCase()
                     # .replace("inpatient", "(in)")
                     # .replace("outpatient", "(out)")
                     # .replace("with ", "w/")
@@ -114,4 +114,4 @@ window.BarChart =
 
 
 BarChart.showOperations()
-BarChart.renderGraph("12/1/2013")
+BarChart.renderGraph("December 2013")
