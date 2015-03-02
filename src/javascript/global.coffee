@@ -20,7 +20,7 @@ window.BarChart =
     X_DATA = @getXData(key)
     x = d3.scale.linear()
           .domain([0, 15000])
-          .range([0, @width])
+          .range([0, @width - 100])
 
     @chart = d3.select(".chart")
       .attr("width", @width)
@@ -32,16 +32,16 @@ window.BarChart =
         .attr("transform", (d, i) => "translate(0, #{i * @barHeight})")
 
     @bar.append('rect')
-        # .attr('width', x)
+        .attr('x', '135')
         .attr('width', (d) => x(@clean_num d[key]))
         .attr('height', @barHeight - 3)
 
     @bar.append("text")
-        .attr("x", (d) =>
-          Math.max(
-            x(@clean_num d[key]) - 3,
-            40
-          ) or 40
+        .attr("x", 130 #(d) =>
+        #   Math.max(
+        #     x(@clean_num d[key]) - 3,
+        #     40
+        #   ) or 40
         )
         .attr("y", @barHeight - 10)
         .attr("dy", ".35em")
@@ -49,8 +49,8 @@ window.BarChart =
 
     @bar.append("text")
         .attr('class', 'name')
-        .attr("x", 3)
-        .attr("y", 10)
+        .attr("x", 130)
+        .attr("y", 8)
         .attr("dy", ".35em")
         .text (d) -> d["Type of Delay"]
 
@@ -59,7 +59,7 @@ window.BarChart =
     X_DATA = @getXData(key)
     x = d3.scale.linear()
           .domain([0, 15000])
-          .range([0, @width])
+          .range([0, @width - 100])
 
     @chart.attr("height", @barHeight * X_DATA.length)
     @bar.data(DATA)
@@ -71,11 +71,11 @@ window.BarChart =
 
     @bar.transition()
       .select("text")
-        .attr("x", (d) =>
-          Math.max(
-            x(@clean_num d[key]) - 3,
-            40
-          ) or 40
+        .attr("x", 130 #(d) =>
+          # Math.max(
+          #   x(@clean_num d[key]) - 3,
+          #   40
+          # ) or 40
           # Math.max((x(@clean_num d[key]) - 3) or 100)
         )
         .attr("dy", ".35em")
