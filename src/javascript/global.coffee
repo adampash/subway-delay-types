@@ -87,9 +87,6 @@ window.BarChart =
     operations = _.keys(DATA[0])
     operations.shift()
 
-    operations = operations.sort (a, b) ->
-      a.indexOf('2013') < b.indexOf('2013')
-
     for operation in operations
       display_operation = operation
                     # .toLowerCase()
